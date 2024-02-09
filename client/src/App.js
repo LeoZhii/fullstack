@@ -1,32 +1,25 @@
-import React, {useState, useEffect } from 'react'
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-
-  // data variable will be taken from backend
-  const [data, setData] = useState({ members: [] });
-
-  useEffect(() => {
-    fetch("/members")
-      .then(res => res.json())
-      .then(data => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
-
-  // Map through data.members and render each member's name
-  const memberList = data.members.map((member, index) => (
-    <li key={index}>{member}</li>
-  ));
-
-
   return (
-    <div>
-      <h1>Leo's Website</h1>
-      <ul>{memberList}</ul>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
-  
-  )
+  );
 }
 
-export default App
+export default App;
