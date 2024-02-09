@@ -18,31 +18,43 @@ function App() {
 	useEffect(() => {
 		// Using fetch to fetch the api from 
 		// flask server it will be redirected to proxy
-		fetch("/data").then((res) =>
-			res.json().then((data) => {
-				// Setting a data from api
-				setdata({
-					name: data.Name,
-					age: data.Age,
-					date: data.Date,
-					programming: data.programming,
-				});
-			})
-		);
+		fetch('https://www.anapioficeandfire.com/api/books',
+		{headers: {'Content-Type': 'application/json'}, method: "GET"}
+	);
+	// ).then((res) =>
+	// 		res.json().then((data) => {
+	// 			setdata({
+	// 				name: data.Name,
+	// 				age: data.Age,
+	// 				date: data.Date,
+	// 				programming: data.programming,
+	// 			})
+	// 			console.log(data);
+	// 		})
+	// 	);
 	}, []);
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				<h1>React and flask</h1>
-				{/* Calling a data from setdata for showing */}
-				<p>{data.name}</p>
-				<p>{data.age}</p>
-				<p>{data.date}</p>
-				<p>{data.programming}</p>
+   <button onClick={fetchBooks}>Get GoT books</button>
+   {books.map((book, index) => {
+       const indexToDisplay = index += 1;
+       return <div key={`book${index}`}>{indexToDisplay}&nbsp;{book.name}</div>
+   })}
+</div>
+		// <div className="App">
+		// 	<header className="App-header">
+		// 		<h1>React and flask</h1>
+		// 		{/* Calling a data from setdata for showing */}
+		// 		{/* <p>{data.name}</p>
+		// 		<p>{data.age}</p>
+		// 		<p>{data.date}</p>
+		// 		<p>{data.programming}</p> */}
 
-			</header>
-		</div>
+		// 		<p></p>
+
+		// 	</header>
+		// </div>
 	);
 }
 
